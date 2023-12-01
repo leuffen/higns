@@ -1,0 +1,14 @@
+/.idea
+/vendor
+/.phpunit.result.cache
+report
+composer.lock
+.keystore.yml
+/.keystore.yml
+
+/node_modules
+/workspaces
+/ssh_keys
+/ssh_keys.pub
+
+/leuffende-8350153ed12a.json
