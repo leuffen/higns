@@ -34,6 +34,7 @@ AppLoader::extend(function (BraceApp $app) {
 
         // Lets evaluate the Uri for Routes
         new RouterEvalMiddleware(),
+        new SubscriptionMiddleware(),
         // This is our dynamic Frontend. Everything below /static is handled here
         new SpaStaticFileServerMw(
             __DIR__ . "/../www/spaserve",

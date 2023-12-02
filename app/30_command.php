@@ -18,6 +18,8 @@ AppLoader::extend(function (BraceApp $app) {
         $mailboxConfig = ImapMailboxConfig::LoadFromKeystore("/opt/.keystore.yml");
         $syncMailFacade->syncMailbox($mailboxConfig);
 
+        $d->storeThreadMetaList();
+
     });
 });
 

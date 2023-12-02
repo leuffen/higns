@@ -6,6 +6,7 @@ use App\Ctrl\AiEndpointCtrl;
 use App\Ctrl\InitializeCtrl;
 use App\Ctrl\PageListCtrl;
 use App\Ctrl\TemplateListCtrl;
+use App\Ctrl\ThreadCtrl;
 use Brace\Auth\Basic\RequireValidAuthTokenMiddleware;
 use Brace\Core\AppLoader;
 use Brace\Core\BraceApp;
@@ -17,9 +18,8 @@ AppLoader::extend(function (BraceApp $app) {
 
     // Controller classes
 
+    $app->router->registerClass($mount, ThreadCtrl::class);
 
-    // Other stuff
-    //$app->router->on("POST|GET@$mount/repo", RepoCtrl::class, [RequireValidAuthTokenMiddleware::class]);
 
     // Return the Api Version
     $app->router->on("GET@$mount", function() {

@@ -27,7 +27,10 @@ class T_DM_ThreadMeta
 
     public string $createdDate;
 
-    public string $lastMessageDate;
+    /**
+     * @var string|null
+     */
+    public ?string $lastMessageDate;
 
 
 

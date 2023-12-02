@@ -1,7 +1,7 @@
 <?php
 namespace App;
 
-use app\BL\DataAccess\DataAccessManager;
+use App\BL\DataAccess\DataAccessManager;
 use App\Business\processors\DownloadStorageProcessor;
 use App\Business\processors\ImageStorageProcessor;
 use App\Business\processors\PdfStorageProcessor;
@@ -63,6 +63,11 @@ AppLoader::extend(function () {
         $subscriptionId = $routeParams->get("subscription_id");
 
         return new HignsConfig($dataAccessManager->getDataAccessObjectForSubscription($subscriptionId));
+    }));
+
+    $app->define("subscriptionDataManager", new DiService(function (DataAccessManager $dataAccessManager, T_Subscription $subscription) {
+
+        return $dataAccessManager->getDataAccessObjectForSubscription($subscription->subscription_id);
     }));
 
     // Define the app so it is also available in dependency-injection

@@ -24,7 +24,13 @@ class SyncMailFacade
         $driver->connect($mailboxConfig);
 
         $syncFacet = new MailScanFacet($driver);
-        $syncFacet->syncMailbox(new HignsMailStorageBridge($this->subscriptionDataManager));
+
+        // Syncronize outgoing emails to create new threads
+        echo "\nSyncing outgoing emails...";
+        $syncFacet->syncMailbox(new HignsMailStorageBridge($this->subscriptionDataManager, true), $driver->mailboxConfig->sentFolder);
+
+        echo "\nSyncing incoming emails...";
+        $syncFacet->syncMailbox(new HignsMailStorageBridge($this->subscriptionDataManager, false), $driver->mailboxConfig->inboxFolder);
 
 
         $this->subscriptionDataManager->storeThreadMetaList();

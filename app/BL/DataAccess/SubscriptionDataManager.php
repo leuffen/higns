@@ -63,7 +63,6 @@ class SubscriptionDataManager
     }
 
     public function setThread(T_DM_Thread $thread) {
-        $thread->lastUpdate = date_create()->format(DATE_ATOM);
         $this->objectStore->object("subscription/$this->subscriptionId/thread/{$thread->threadId}/thread.json")->putJson((array)$thread);
     }
 

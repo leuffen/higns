@@ -7,20 +7,25 @@ class T_DM_Thread_Message
 
     public function __construct(
 
-          public string $imapId,
-
+        public string $imapId,
         public string $subject,
-
-          public string $dateTime,
+        public string $dateTime,
+        public string $from,
+        /**
+         * email_incoming|email_outgoing|note
+         *
+         * @var string
+         */
+        public string $type,
 
         public string $originalText,
     )
     {}
 
 
-
-    public string $direction;
-
-    public string $shortMessage;
+    /**
+     * @var string|null
+     */
+    public ?string $shortMessage;
 
 }
