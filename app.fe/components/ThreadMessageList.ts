@@ -37,6 +37,7 @@ function filterThread(thread : any) {
         msg.showHeader = true;
         if (last !== null && last.from === msg.from) {
             msg.showHeader = false;
+            continue;
         }
         last = msg;
     }
@@ -72,6 +73,11 @@ export class ThreadMessageList extends KaCustomElement {
         super.connectedCallback();
 
         let thread = await api_call(API.getthreadmessages_GET, {subscription_id: this.subscription_id, thread_id: this.thread_id})
+
+
+        thread.messages.sort((a, b) => {
+            return a.dateTime < b.dateTime ? 1 : -1
+        });
         thread = filterThread(thread);
         this.scope.thread = thread;
     }
