@@ -5,6 +5,7 @@ namespace App\Ctrl;
 use App\BL\DataAccess\SubscriptionDataManager;
 use App\Type\HignsConfig;
 use Brace\Router\Attributes\BraceRoute;
+use Brace\Router\Type\RouteParams;
 
 class ThreadCtrl
 {
@@ -22,7 +23,12 @@ class ThreadCtrl
         return $this->subscriptionDataManager->getThreadMetaList();
     }
 
-
+     #[BraceRoute("GET@/{subscription_id}/thread/{thread_id}/getThread()", "getthreadmessages")]
+    public function getThreadMessages(RouteParams $routeParams) {
+        $thread = $this->subscriptionDataManager->getThreadById($routeParams->get("thread_id"));
+        $thread->sortMessages();
+        return $thread;
+    }
 
 
 

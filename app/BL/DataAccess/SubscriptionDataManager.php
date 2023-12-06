@@ -72,8 +72,8 @@ class SubscriptionDataManager
      * @param string $content
      * @return string
      */
-    public function getThreadBlob(string $threadId) : string {
-
+    public function getThreadAttachment(string $threadId, string $filename) : string {
+        return $this->objectStore->object("subscription/$this->subscriptionId/thread/{$threadId}/attachment/$filename")->get();
     }
 
     /**
@@ -81,8 +81,8 @@ class SubscriptionDataManager
      * @param string $contentId
      * @return string
      */
-    public function getBlob(string $contentId) : string {
-
+    public function addThreadAttachment(string $threadId, string $filename, string $data) {
+        $this->objectStore->object("subscription/$this->subscriptionId/thread/{$threadId}/attachment/$filename")->put($data);
     }
 
 }

@@ -4,20 +4,18 @@ import {currentRoute} from "@kasimirjs/app";
 import {CurRoute} from "@kasimirjs/app";
 import {API} from "../_routes";
 import {DefaultModal, FlexModal} from "@kasimirjs/kit-bootstrap";
+import {ThreadMessageList} from "../components/ThreadMessageList";
 
 // language=html
 let html = `
         
-<div class="container-fluid" style="height: 50000px">
+<div class="container-fluid" style="">
+    <h1>Messages: [[thread_id]]</h1>
     <div class="row">
-        <h2>Thread:</h2>
-        <div>
-            <button ka.on.click="$fn.initialize()">Initialize (Copy all struff from _root to /opt)</button>
+        <div class="col-3">
         </div>
-        <div class="mt-4">
-            <h2>Ai Generate Data files</h2>
-            <select ka.options="fileList" ka.bind="$scope.file"></select>
-            <button ka.on.click="$fn.aiGenerate($this)">AI Generate</button>
+        <div class="col-9">
+            <div ka.content="threadList"></div>
         </div>
     </div>
 </div>
@@ -33,13 +31,16 @@ class ThreadPage extends KaCustomElement {
     constructor(public route : CurRoute) {
         super();
         let scope = this.init({
-
+            threadList: null,
+            subscription_id: router.currentRoute.route_params.subscription_id,
+            thread_id: router.currentRoute.route_params.thread_id
         })
     }
 
     async connectedCallback(): Promise<void> {
         super.connectedCallback();
 
+        this.scope.threadList = new ThreadMessageList(this.scope.subscription_id, this.scope.thread_id)
 
 
     }

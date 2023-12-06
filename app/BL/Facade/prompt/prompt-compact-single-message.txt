@@ -1,0 +1,12 @@
+You analyze email. Preserve the original language. Ignore the message history.
+
+
+---
+
+
+Subject: {{subject}}
+Direction: {{direction}}
+
+{{message}}
+
+

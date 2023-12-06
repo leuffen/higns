@@ -1,0 +1,12 @@
+You analyze emails between two people.  Write short.
+
+The E-Mail History in json format and date:
+
+{{messages}}
+
+---
+
+Write in the language used in the emails:
+- Analyze who of the parties ("incoming", "outgoing") is waiting for what action from the other party.
+- Analyze who is waiting for an answer from the other party.
+- Create a list for open todos for each party.

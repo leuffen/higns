@@ -30,9 +30,20 @@ class T_DM_Thread
     public array $media = [];
 
 
+    /**
+     * @var string|null
+     */
+    public ?string $statusMsg = null;
+
+
+    public function sortMessages() {
+        usort($this->messages, fn(T_DM_Thread_Message $a, T_DM_Thread_Message $b) => $a->dateTime > $b->dateTime ? 1 : -1);
+    }
+
     public function addMessage(T_DM_Thread_Message $message) {
         $this->messages[] = $message;
     }
+
 
     public function getMessageByImapId(string $imapId) : ?T_DM_Thread_Message {
         foreach ($this->messages as $message) {

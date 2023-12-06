@@ -7,7 +7,7 @@ import {ThreadList} from "../components/ThreadList";
 // language=html
 let html = `
         
-<div class="container-fluid" style="height: 50000px">
+<div class="container-fluid" style="">
     <div class="row">
         <div class="col-12">
             <h2>HiGNS Threads:</h2>

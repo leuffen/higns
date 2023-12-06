@@ -19,7 +19,9 @@ use Brace\Mod\Request\Zend\BraceRequestLaminasModule;
 use Brace\Router\RouterModule;
 use Brace\Router\Type\RouteParams;
 use Lack\Frontmatter\Repo\FrontmatterRepo;
+use Lack\Keystore\KeyStore;
 use Lack\OpenAi\LackOpenAiClient;
+use Lack\OpenAi\Logger\CliLogger;
 use Lack\OpenAi\Logger\NullLogger;
 use Lack\Subscription\Brace\SubscriptionClientModule;
 use Lack\Subscription\Type\T_Subscription;
@@ -68,6 +70,11 @@ AppLoader::extend(function () {
     $app->define("subscriptionDataManager", new DiService(function (DataAccessManager $dataAccessManager, T_Subscription $subscription) {
 
         return $dataAccessManager->getDataAccessObjectForSubscription($subscription->subscription_id);
+    }));
+
+    $app->define("openAiClient", new DiService(function () {
+        $openAiClient = new LackOpenAiClient(KeyStore::Get()->getAccessKey("open_ai"), new CliLogger());
+        return $openAiClient;
     }));
 
     // Define the app so it is also available in dependency-injection

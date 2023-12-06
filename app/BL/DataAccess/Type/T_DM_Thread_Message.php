@@ -1,6 +1,6 @@
 <?php
 
-namespace app\BL\DataAccess\Type;
+namespace App\BL\DataAccess\Type;
 
 class T_DM_Thread_Message
 {
@@ -19,6 +19,13 @@ class T_DM_Thread_Message
         public string $type,
 
         public string $originalText,
+
+        /**
+         * List of file Attachements
+         *
+         * @var string[]|null
+         */
+        public array|null $attachmentFileList = null
     )
     {}
 
@@ -27,5 +34,10 @@ class T_DM_Thread_Message
      * @var string|null
      */
     public ?string $shortMessage;
+
+    /**
+     * @var T_DM_Thread_Message_AiDetails|null
+     */
+    public ?T_DM_Thread_Message_AiDetails $aiDetails = null;
 
 }

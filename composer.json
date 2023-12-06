@@ -24,7 +24,9 @@
     "lack/openai": "*",
     "lack/mailscan": "dev-main",
     "brace/command": "dev-main",
-    "lack/subscription": "dev-main"
+    "lack/subscription": "dev-main",
+    "lack/keystore": "dev-main",
+    "brixlab/coder": "dev-main"
   },
   "require-dev": {
     "phore/tester": "*"
