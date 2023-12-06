@@ -9,7 +9,7 @@ let html = `
         <div ka.for="let tm of thread?.messages" >
             <div class="row" ka.classList.justify-content-end="tm.type==='email_outgoing'">
                 <div class="col-10 m-1">
-                    <div class="card">
+                    <div class="card bg-gradient" ka.classList.bg-light="tm.type==='email_outgoing'">
                     <div class="card-body">
                         <div ka.if="tm.showHeader">
                             <i ka.if="tm.type==='email_incoming'" class="bi bi-box-arrow-in-right fs-4 pe-1"></i>
