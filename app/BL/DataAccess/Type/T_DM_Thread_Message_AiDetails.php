@@ -68,13 +68,15 @@ class T_DM_Thread_Message_AiDetails
      */
     public bool $containsData = false;
 
+
+
     /**
-     * What questions have to be answered to generate a response to this mail?
+     * What questions have to be answered and tasks have to be fulfilled to generate a response to this mail?
      *
      * (Only for incoming mails, keep empty for outgoing mails)
      *
-     * @var T_DM_Thread_Message_AiDetails_Question[]
+     * @var T_DM_Thread_Message_AiDetails_QuestionTask[]
      */
-    public array $questions = [];
+    public array $questionsAndTasks = [];
 
 }

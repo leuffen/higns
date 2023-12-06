@@ -2,6 +2,7 @@ import {customElement, ka_session_storage, ka_sleep, KaCustomElement, KaHtmlElem
 import {api_call, href, route, router} from "@kasimirjs/app";
 import {CurRoute} from "@kasimirjs/app";
 import {ThreadList} from "../components/ThreadList";
+import {ThreadListWithFilters} from "../components/ThreadListWithFilters";
 
 
 // language=html
@@ -9,9 +10,9 @@ let html = `
         
 <div class="container-fluid" style="">
     <div class="row">
-        <div class="col-12">
+        <div class="col-12" style="height: 100vh">
             <h2>HiGNS Threads:</h2>
-            <div ka.content="threadList"></div>
+            <div class="h-100" ka.content="threadList"></div>
         </div>
     </div>
 </div>
@@ -36,7 +37,7 @@ class IndexPage extends KaCustomElement {
     async connectedCallback(): Promise<void> {
         super.connectedCallback();
 
-        this.scope.threadList = new ThreadList(router.currentRoute.route_params["subscription_id"])
+        this.scope.threadList = new ThreadListWithFilters(router.currentRoute.route_params["subscription_id"])
 
 
 

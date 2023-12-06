@@ -4,6 +4,7 @@ namespace App\BL\DataAccess;
 
 use App\BL\DataAccess\Type\T_DM_Mailbox;
 use App\BL\DataAccess\Type\T_DM_Thread;
+use App\BL\DataAccess\Type\T_DM_ThreadMeta;
 use App\BL\DataAccess\Type\T_S_ThreadMeta;
 use Phore\ObjectStore\ObjectStore;
 use Phore\ObjectStore\Type\ObjectStoreObject;
@@ -51,6 +52,11 @@ class SubscriptionDataManager
     public function storeThreadMetaList() {
         if ($this->threadMetaObject === null)
             throw new \InvalidArgumentException("No thread meta object set");
+
+        usort($this->threadMetaObject->threads, function (T_DM_ThreadMeta $a, T_DM_ThreadMeta $b) {
+            return strcmp($a->lastInboundDate, $b->lastInboundDate);
+        });
+
         $this->threadMetaListFile->putJson((array)$this->threadMetaObject);
     }
 

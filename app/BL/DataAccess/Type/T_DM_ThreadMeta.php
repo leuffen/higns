@@ -1,6 +1,6 @@
 <?php
 
-namespace app\BL\DataAccess\Type;
+namespace App\BL\DataAccess\Type;
 
 class T_DM_ThreadMeta
 {
@@ -30,8 +30,18 @@ class T_DM_ThreadMeta
     /**
      * @var string|null
      */
-    public ?string $lastMessageDate;
+    public ?string $lastInboundDate = null;
 
+    /**
+     * @var string|null
+     */
+    public ?string $lastOutboundDate = null;
+
+
+    /**
+     * @var bool
+     */
+    public bool $isHidden = false;
 
 
 }

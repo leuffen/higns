@@ -90,14 +90,22 @@ class HignsMailStorageBridge implements MailStorageInterface
     {
         $threadMetaList = $this->subscriptionDataManager->getThreadMetaList();
 
+        $messageDate = date("Y-m-d H:i:s", strtotime($mail->date));
 
         if ($this->isSent) {
             $threadMeta = $threadMetaList->getThreadByEMail(phore_email($mail->toString)->getEMailNormalized());
+            if ($threadMeta->lastOutboundDate === null || $messageDate > $threadMeta->lastOutboundDate)
+                $threadMeta->lastOutboundDate = $messageDate;
         } else {
             $threadMeta = $threadMetaList->getThreadByEMail(phore_email($mail->fromAddress)->getEMailNormalized());
+            if ($threadMeta->lastInboundDate === null || $messageDate > $threadMeta->lastInboundDate)
+                $threadMeta->lastInboundDate = $messageDate;
         }
 
         $thread = $this->subscriptionDataManager->getThreadById($threadMeta->threadId);
+
+
+
 
 
 
