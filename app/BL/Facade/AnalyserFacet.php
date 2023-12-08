@@ -66,9 +66,10 @@ class AnalyserFacet
         $facet = $this->openAiClient->getFacet();
         $facet->setModel("gpt-4-1106-preview");
 
-        $facet->promptData(__DIR__ . "/prompt/prompt-history.txt", [
+        $aiDetails = $facet->promptData(__DIR__ . "/prompt/prompt-history.txt", [
             "messages" => phore_json_encode($data),
         ], T_DM_Thread_AiDetails::class);
+        $thread->aiDetails = $aiDetails;
         $this->subscriptionDataManager->setThread($thread);
     }
 

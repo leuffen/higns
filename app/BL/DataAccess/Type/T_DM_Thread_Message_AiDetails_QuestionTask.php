@@ -15,6 +15,15 @@ class T_DM_Thread_Message_AiDetails_QuestionTask
     public string $type = "question";
 
     /**
+     * Who is responsible for answering or performing the task.
+     *
+     * Values: "sender" or "receiver"
+     *
+     * @var string
+     */
+    public string $party = "receiver";
+
+    /**
      * The Question or Task-Description
      *
      * @var string

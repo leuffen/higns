@@ -25,6 +25,13 @@ class T_DM_ThreadMeta
     public array $partnerEMail;
 
 
+    /**
+     * Sort / Limit by tags
+     *
+     * @var string[]
+     */
+    public array $tags = [];
+
     public string $createdDate;
 
     /**

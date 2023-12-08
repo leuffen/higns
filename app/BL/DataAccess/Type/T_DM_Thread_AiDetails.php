@@ -14,6 +14,13 @@ class T_DM_Thread_AiDetails
     public string $inboundPartnerData = "";
 
 
+    /**
+     * Provide a short overview of the current state of the communication. Who is waiting for what? What is already done?
+     * What is the next step? What is the current status? etc.
+     *
+     * @var string
+     */
+    public string $statusSummary = "";
 
 
     /**

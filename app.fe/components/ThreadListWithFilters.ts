@@ -28,7 +28,8 @@ let html = `
 export class ThreadListWithFilters extends KaCustomElement {
 
     constructor(
-        public subscription_id : string
+        public subscription_id : string,
+        public selectedThreadId : string = null
     ) {
         super();
         let scope = this.init({
@@ -47,7 +48,7 @@ export class ThreadListWithFilters extends KaCustomElement {
     async connectedCallback(): Promise<void> {
         super.connectedCallback();
 
-        this.scope.messages = new ThreadList(this.subscription_id)
+        this.scope.messages = new ThreadList(this.subscription_id, this.selectedThreadId)
 
 
     }

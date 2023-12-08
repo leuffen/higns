@@ -6,7 +6,7 @@ import {API} from "../_routes";
 let html = `
     <ol class="list-group">
         <div ka.for="let t of threadList?.threads">
-            <li ka.if="t.show"  class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
+            <li ka.if="t.show"  class="list-group-item list-group-item-action d-flex justify-content-between align-items-start" ka.classList.active="t.threadId===selectedThreadId">
 
                 <div class="row w-100">
                     <div class="col-1" style="width: 20px">
@@ -52,12 +52,14 @@ function filterThreadList(threadList) {
 export class ThreadList extends KaCustomElement {
 
     constructor(
-        public subscription_id : string
+        public subscription_id : string,
+        public selectedThreadId : string = null
     ) {
         super();
         let scope = this.init({
             threadList: null,
             selected: [],
+            selectedThreadId: this.selectedThreadId,
             subscription_id: subscription_id
         })
     }

@@ -35,6 +35,11 @@ class T_DM_Thread
      */
     public ?string $statusMsg = null;
 
+    /**
+     * @var T_DM_Thread_AiDetails|null
+     */
+    public $aiDetails = null;
+
 
     public function sortMessages() {
         usort($this->messages, fn(T_DM_Thread_Message $a, T_DM_Thread_Message $b) => $a->dateTime > $b->dateTime ? 1 : -1);

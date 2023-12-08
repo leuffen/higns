@@ -6,6 +6,7 @@ import {API} from "../_routes";
 import {DefaultModal, FlexModal} from "@kasimirjs/kit-bootstrap";
 import {ThreadMessageList} from "../components/ThreadMessageList";
 import {ThreadListWithFilters} from "../components/ThreadListWithFilters";
+import {ThreadMetaDetails} from "../components/ThreadMetaDetails";
 
 // language=html
 let html = `
@@ -28,8 +29,10 @@ let html = `
             <div class="col-3 h-100 bg-light" ">
                 <div class="h-100" ka.content="threadMetaList"></div>
             </div>
-            <div class="col-4 h-100 overflow-scroll">
-                <div ka.content="threadList"></div>
+            <div class="col-4 h-100 position-relative">
+                <div ka.content="threadMetaDetails" class="position-absolute top-0 start-0 end-0 bg-light" style="height: 100px"></div>
+                <div class="position-absolute bottom-0 w-100 overflow-scroll" ka.content="threadList" style="top: 100px"></div>
+
             </div>
         </div>
     </div>
@@ -49,6 +52,7 @@ class ThreadPage extends KaCustomElement {
         let scope = this.init({
             threadList: null,
             threadMetaList: null,
+            threadMetaDetails: null,
             subscription_id: router.currentRoute.route_params.subscription_id,
             thread_id: router.currentRoute.route_params.thread_id
         })
@@ -58,8 +62,8 @@ class ThreadPage extends KaCustomElement {
         super.connectedCallback();
 
         this.scope.threadList = new ThreadMessageList(this.scope.subscription_id, this.scope.thread_id)
-        this.scope.threadMetaList = new ThreadListWithFilters(this.scope.subscription_id)
-
+        this.scope.threadMetaList = new ThreadListWithFilters(this.scope.subscription_id, this.scope.thread_id)
+        this.scope.threadMetaDetails = new ThreadMetaDetails(this.scope.subscription_id, this.scope.thread_id)
     }
 
 

@@ -1,4 +1,5 @@
 You analyze emails between two people.  Write short.
+Always write Text in the language used in the emails!
 
 The E-Mail History in json format and date:
 
