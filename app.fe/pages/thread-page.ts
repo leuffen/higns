@@ -16,7 +16,7 @@ let html = `
         <div class="row w-100">
             <div class="col-6">
                 <img src="/static/higns-logo.webp" style="height: 60px" class="float-start me-2">
-                <h1 class="m-1">HiGNS: [[thread_id]]</h1>
+                <h1 class="m-1">HiGNS</h1>
             </div>
             <div class="col-6">
                 info
@@ -30,8 +30,8 @@ let html = `
                 <div class="h-100" ka.content="threadMetaList"></div>
             </div>
             <div class="col-4 h-100 position-relative">
-                <div ka.content="threadMetaDetails" class="position-absolute top-0 start-0 end-0 bg-light" style="height: 100px"></div>
-                <div class="position-absolute bottom-0 w-100 overflow-scroll" ka.content="threadList" style="top: 100px"></div>
+                <div ka.content="threadMetaDetails" class="position-absolute top-0 start-0 end-0 bg-light" style="height: 150px"></div>
+                <div class="position-absolute bottom-0 w-100 overflow-scroll" ka.content="threadList" style="top: 150px"></div>
 
             </div>
         </div>

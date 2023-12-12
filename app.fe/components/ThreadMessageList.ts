@@ -19,7 +19,14 @@ let html = `
 
                         </div>
                         <div ka.if="tm.aiDetails === null">bitte warten...</div>
-                        <div ka.if="tm.aiDetails !== null">[[ tm.aiDetails.shortDescription ]]<button class="btn btn-link" ka.on.click="$fn.details(tm.imapId)">Details</button></div>
+                        <div ka.if="tm.aiDetails !== null">
+                            <i ka.if="tm.aiDetails?.responseRequested === true" class="bi text-danger bi-chat-left-dots-fill pe-1" title="Response Requested"></i>
+                            <i ka.if="tm.aiDetails?.containsData === true" class="bi text-danger bi-exclamation-diamond-fill pe-1 " title="Contains Data"></i>
+                            
+                            [[ tm.aiDetails.shortDescription ]]
+                            
+                            <button class="btn btn-link" ka.on.click="$fn.details(tm.imapId)">Details</button>
+                        </div>
                     </div>
                 </div>
                 

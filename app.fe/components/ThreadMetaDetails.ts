@@ -6,18 +6,31 @@ import {API} from "../_routes";
 let html = `
     <div class="list-group">
         <div class="row">
-            <div class="col-2">ID</div>
-            <div class="col-4">[[ threadMeta?.threadId ]]</div>
+            <div class="col-12 text-nowrap overflow-hidden" ka.classlist.fw-bold="threadMeta.isUnread" ka.classlist.text-decoration-line-through="threadMeta.isArchived">[[threadMeta.title]]</div>
+        </div>
+        <div class="row">
+            <div class="col-6 h-100">
+                ID [[ threadMeta.threadId ]]
+                <div class="row">
+                    <div class="col-6">
+                        <i class="bi bi-clock"></i> Resubmission
+                    </div>
+                    <div class="col-6">
+                        <input type="date" ka.bind="threadMeta.resubmissionDate" ka.on.change="$fn.updateMeta({resubmissionDate: threadMeta.resubmissionDate === '' ? null : threadMeta.resubmissionDate})">
+                    </div>
+                </div>
+            </div>
+    
             <div class="col-6 text-end">
                 <!-- Button group starts here -->
                 <div class="btn-group btn-group me-3 " role="group" aria-label="Button Group">
                     <!-- Show/Hide Button -->
-                    <a type="button" ka.on.click="$fn.updateMeta('isUnread', !threadMeta.isUnread)" class="btn btn-outline-secondary">
-                        <i class="bi" ka.classlist.bi-eye="threadMeta.isUnread" ka.classlist.bi-eye-slash=" ! threadMeta.isUnread"></i>
+                    <a type="button" ka.on.click="$fn.updateMeta({'isUnread': !threadMeta.isUnread})" class="btn btn-outline-secondary">
+                        <i class="bi" ka.classlist.bi-eye-fill="threadMeta.isUnread" ka.classlist.bi-eye-slash=" ! threadMeta.isUnread"></i>
                     </a>
                     <!-- Goto Thread Button -->
-                    <button type="button" class="btn btn-outline-secondary">
-                        <i class="bi bi-arrow-up-right-square"></i>
+                    <button type="button" ka.on.click="$fn.updateMeta({'isArchived': !threadMeta.isArchived, isUnread: threadMeta.isArchived === false ? false : true});" class="btn btn-outline-secondary">
+                        <i class="bi" ka.classlist.bi-archive="! threadMeta.isArchived" ka.classlist.bi-archive-fill="threadMeta.isArchived"></i>
                     </button>
                     <!-- Details Button -->
                     <button type="button" class="btn btn-outline-secondary">
@@ -55,8 +68,9 @@ export class ThreadMetaDetails extends KaCustomElement {
             subscription_id: subscription_id,
 
             $fn: {
-                updateMeta: async (key : string, value : any) => {
-                    await api_call(API.setthreadmetafield_POST, {subscription_id: this.subscription_id, thread_id: this.thread_id}, {[key]: value})
+                updateMeta: async (updates: {[key : string]: any}) => {
+                    scope.threadMeta = await api_call(API.setthreadmetafield_POST, {subscription_id: this.subscription_id, thread_id: this.thread_id}, updates)
+
                 }
             }
         })

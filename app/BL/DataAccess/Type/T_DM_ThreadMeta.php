@@ -53,12 +53,6 @@ class T_DM_ThreadMeta
      */
     public bool $isArchived = false;
 
-    /**
-     * Unused!
-     *
-     * @var bool
-     */
-    public bool $isHidden = false;
 
     /**
      * Has new incoming messages
@@ -70,8 +64,8 @@ class T_DM_ThreadMeta
     /**
      * The date of the next resubmission
      *
-     * @var string
+     * @var string|null
      */
-    public string $resubmissionDate = "";
+    public string|null $resubmissionDate = null;
 
 }

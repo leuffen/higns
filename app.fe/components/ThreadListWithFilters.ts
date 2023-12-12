@@ -6,7 +6,7 @@ import {ThreadList} from "./ThreadList";
 let html = `
     <div class="h-100 w-100 position-relative">
         <div class="row position-absolute top-0 w-100" style="height:40px; z-index: 4">
-            <div class="row">
+            <div class="row pt-2">
                 
                 <div class="col-6">
                     <input type="search" ka.bind="$scope.search" class="form-control" placeholder="Search" aria-label="Search">

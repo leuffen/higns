@@ -128,6 +128,12 @@ class HignsMailStorageBridge implements MailStorageInterface
             $plainText,
         );
 
+        if ($message->type === "email_incoming") {
+            $threadMeta->isUnread = true;
+            if ($threadMeta->isArchived)
+                $threadMeta->isArchived = false;
+        }
+
         $attachments = $mail->getAttachments();
 
 
