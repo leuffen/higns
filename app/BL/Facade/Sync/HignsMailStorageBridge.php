@@ -152,6 +152,7 @@ class HignsMailStorageBridge implements MailStorageInterface
             $media->filename = $attachment->name;
             $media->ownerMessageId = $message->imapId;
             $thread->media[] = $media;
+            echo "saved attachment: " . $attachment->name . "\n";
         }
 
         echo "SAVING!";
