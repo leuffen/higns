@@ -78,8 +78,8 @@ class SubscriptionDataManager
      * @param string $content
      * @return string
      */
-    public function getThreadAttachment(string $threadId, string $filename) : string {
-        return $this->objectStore->object("subscription/$this->subscriptionId/thread/{$threadId}/attachment/$filename")->get();
+    public function getThreadAttachment(string $threadId, string $id) : string {
+        return $this->objectStore->object("subscription/$this->subscriptionId/thread/{$threadId}/attachment/$id")->get();
     }
 
     /**
@@ -87,8 +87,9 @@ class SubscriptionDataManager
      * @param string $contentId
      * @return string
      */
-    public function addThreadAttachment(string $threadId, string $filename, string $data) {
-        $this->objectStore->object("subscription/$this->subscriptionId/thread/{$threadId}/attachment/$filename")->put($data);
+    public function addThreadAttachment(string $threadId, string $data) : string {
+        $id = sha1($data);
+        $this->objectStore->object("subscription/$this->subscriptionId/thread/{$threadId}/attachment/$id")->put($data);
     }
 
 }

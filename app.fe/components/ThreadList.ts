@@ -93,9 +93,22 @@ export class ThreadList extends KaCustomElement {
         this.scope.render();
     }
 
-    async filter(filter : string, showFilter: string = "all")
+    async filter(filter : string, showFilter: string = "current")
     {
         this.scope.threadList.threads.forEach((t) => {
+            t.show = null;
+
+            if (showFilter === "current") {
+                t.show = t.isArchived !== true
+            }
+
+            if (filter === "") {
+                if (t.show === null)
+                    t.show = true
+                return;
+            }
+
+
 
             if (t.title.toLowerCase().includes(filter.toLowerCase()))
                 t.show = true
@@ -112,5 +125,6 @@ export class ThreadList extends KaCustomElement {
         threadList = filterThreadList(threadList);
         this.scope.threadList = threadList;
         await this.sortBy(null, false);
+        this.filter("", "current")
     }
 }

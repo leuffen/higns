@@ -12,7 +12,7 @@ let html = `
                     <input type="search" ka.bind="$scope.search" class="form-control" placeholder="Search" aria-label="Search">
                 </div>
                 <div class="col-3">
-                    <select ka.options="{all: 'Alle', visible: 'Sichtbare'}" ka.bind.default="'all'" ka.bind="$scope.showFilter" class="form-select" aria-label="Default select example">
+                    <select ka.options="{current: 'Aktuelle', all: 'Alle'}" ka.bind.default="'current'" ka.bind="$scope.showFilter" class="form-select" aria-label="Default select example">
                        
                     </select>
                 </div>
@@ -46,7 +46,7 @@ export class ThreadListWithFilters extends KaCustomElement {
             $on: {
                 change: async () => {
                     console.log("change");
-                    this.scope.messages.filter(this.scope.search)
+                    this.scope.messages.filter(this.scope.search, this.scope.showFilter);
                 }
             }
         })

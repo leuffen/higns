@@ -3,6 +3,7 @@
 namespace App\BL\Facade\Sync;
 
 use App\BL\DataAccess\SubscriptionDataManager;
+use App\BL\DataAccess\Type\T_DM_Thread_Media;
 use App\BL\DataAccess\Type\T_DM_Thread_Message;
 use Lack\MailScan\MailStorageInterface;
 use PhpImap\IncomingMail;
@@ -136,6 +137,22 @@ class HignsMailStorageBridge implements MailStorageInterface
 
         $attachments = $mail->getAttachments();
 
+        foreach ($attachments as $attachment) {
+            $id = $this->subscriptionDataManager->addThreadAttachment($thread->threadId, $attachment->getContents());
+
+            foreach ($thread->media as $media) {
+                if ($media->filename === $attachment->name) {
+                    $media->id = $id;
+                    continue 2;
+                }
+            }
+            $media = new T_DM_Thread_Media();
+            $media->id = $id;
+            $media->date = $message->dateTime;
+            $media->filename = $attachment->name;
+            $media->ownerMessageId = $message->imapId;
+            $thread->media[] = $media;
+        }
 
         echo "SAVING!";
         $thread->addMessage($message);

@@ -25,7 +25,7 @@ class T_DM_Thread
     public array $messages = [];
 
     /**
-     * @var array
+     * @var T_DM_Thread_Media[]
      */
     public array $media = [];
 
