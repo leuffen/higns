@@ -54,7 +54,7 @@ class SubscriptionDataManager
             throw new \InvalidArgumentException("No thread meta object set");
 
         usort($this->threadMetaObject->threads, function (T_DM_ThreadMeta $a, T_DM_ThreadMeta $b) {
-            return strcmp($a->lastInboundDate, $b->lastInboundDate);
+            return strcmp((string)$a->lastInboundDate, (string)$b->lastInboundDate);
         });
 
         $this->threadMetaListFile->putJson((array)$this->threadMetaObject);

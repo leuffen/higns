@@ -6,6 +6,7 @@ use App\BL\DataAccess\SubscriptionDataManager;
 use App\Type\HignsConfig;
 use Brace\Router\Attributes\BraceRoute;
 use Brace\Router\Type\RouteParams;
+use http\Message\Body;
 
 class ThreadCtrl
 {
@@ -30,6 +31,21 @@ class ThreadCtrl
         return $thread;
     }
 
+    #[BraceRoute("POST@/{subscription_id}/thread/{thread_id}/setThreadMetaField()", "setthreadmetafield")]
+    public function setThreadMetaField(RouteParams $routeParams, array $body) {
+        $tml = $this->subscriptionDataManager->getThreadMetaList();
+        foreach ($tml->threads as $thread) {
+            if ($thread->threadId !== $routeParams->get("thread_id")) {
+                continue;
+            }
+            foreach ($body as $key => $value) {
+                $thread->$key = $value;
+            }
+            $this->subscriptionDataManager->storeThreadMetaList();
+            return $thread;
+
+        }
+    }
 
 
 

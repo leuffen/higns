@@ -46,9 +46,32 @@ class T_DM_ThreadMeta
 
 
     /**
+     * If true the messages will be hidden util a new
+     * incoming mail is received
+     *
+     * @var bool
+     */
+    public bool $isArchived = false;
+
+    /**
+     * Unused!
+     *
      * @var bool
      */
     public bool $isHidden = false;
 
+    /**
+     * Has new incoming messages
+     *
+     * @var bool
+     */
+    public bool $isUnread = false;
+
+    /**
+     * The date of the next resubmission
+     *
+     * @var string
+     */
+    public string $resubmissionDate = "";
 
 }
