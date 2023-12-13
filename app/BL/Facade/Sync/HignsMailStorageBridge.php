@@ -148,6 +148,7 @@ class HignsMailStorageBridge implements MailStorageInterface
             }
             $media = new T_DM_Thread_Media();
             $media->id = $id;
+            $media->direction = $message->type;
             $media->date = $message->dateTime;
             $media->filename = $attachment->name;
             $media->ownerMessageId = $message->imapId;

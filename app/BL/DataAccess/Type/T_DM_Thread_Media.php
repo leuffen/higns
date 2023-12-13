@@ -12,6 +12,13 @@ class T_DM_Thread_Media
 
 
     /**
+     * email_incoming|email_outgoing
+     *
+     * @var string
+     */
+    public string $direction = "email_incoming";
+
+    /**
      * @var string
      */
     public string $filename;
