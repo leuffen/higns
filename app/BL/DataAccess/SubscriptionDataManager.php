@@ -90,6 +90,7 @@ class SubscriptionDataManager
     public function addThreadAttachment(string $threadId, string $data) : string {
         $id = sha1($data);
         $this->objectStore->object("subscription/$this->subscriptionId/thread/{$threadId}/attachment/$id")->put($data);
+        return $id;
     }
 
 }

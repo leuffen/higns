@@ -1,7 +1,7 @@
 import {customElement, KaCustomElement, template, timeAgo} from "@kasimirjs/embed";
-import {api_call} from "@kasimirjs/app";
 import {API} from "../_routes";
 import {OriginalMailModal} from "../modals/OriginalMailModal";
+import {threadService} from "../worker/thread-service";
 
 // language=html
 let html = `
@@ -79,7 +79,7 @@ export class ThreadMessageList extends KaCustomElement {
     async connectedCallback(): Promise<void> {
         super.connectedCallback();
 
-        let thread = await api_call(API.getthreadmessages_GET, {subscription_id: this.subscription_id, thread_id: this.thread_id})
+        let thread = await threadService.getThreadById(this.thread_id);
 
 
         thread.messages.sort((a, b) => {

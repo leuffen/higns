@@ -2,6 +2,8 @@
 
 namespace App\BL\DataAccess\Type;
 
+use Phore\Core\Exception\NotFoundException;
+
 class T_DM_Thread
 {
 
@@ -49,6 +51,13 @@ class T_DM_Thread
         $this->messages[] = $message;
     }
 
+    public function getMediaById(string $mediaId) : T_DM_Thread_Media {
+        foreach ($this->media as $media) {
+            if ($media->id === $mediaId)
+                return $media;
+        }
+        throw new NotFoundException("Media with id '$mediaId' not found.");
+    }
 
     public function getMessageByImapId(string $imapId) : ?T_DM_Thread_Message {
         foreach ($this->messages as $message) {
